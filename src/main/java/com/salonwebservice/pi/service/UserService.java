@@ -1,6 +1,7 @@
 package com.salonwebservice.pi.service;
 
 import com.salonwebservice.pi.entity.User;
+import com.salonwebservice.pi.exception.ResourceNotFoundException;
 import com.salonwebservice.pi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,13 +28,18 @@ public class UserService {
     }
 
     public User updateUser(int id, User updatedUser) {
-        return userRepository.findById(id)
-                .map(user -> {
-                    user.setName(updatedUser.getName());
-                    user.setCpf(updatedUser.getCpf());
-                    return userRepository.save(user);
-                })
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o id: " + id));
+
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado com o id: " + id));
+
+        if (updatedUser.getName() != null) {
+            existingUser.setName(updatedUser.getName());
+        }
+        if (updatedUser.getCpf() != null) {
+            existingUser.setCpf(updatedUser.getCpf());
+        }
+
+        return userRepository.save(existingUser);
     }
 
     public void deleteUser(int id) {
