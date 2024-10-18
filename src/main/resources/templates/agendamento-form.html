@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Agendamento - Salão Dona Inês</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Salão Dona Inês</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Agendamentos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Formulário de Agendamento -->
+<div class="container mt-5">
+    <h2 class="text-center">Formulário de Agendamento</h2>
+    <form th:action="@{/edit/{id}(id=${agendamento.idScheduling})}"
+          th:object="${agendamento}"
+          method="post">
+        <input type="hidden" name="_method" value="put" />
+
+        <div class="mb-3">
+            <label for="userName" class="form-label">Nome Completo</label>
+            <input type="text" class="form-control" id="userName" th:field="*{userName}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="tel" class="form-label">Telefone</label>
+            <input type="tel" class="form-control" id="tel" th:field="*{tel}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" th:field="*{email}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="dateDay" class="form-label">Data</label>
+            <input type="text" class="form-control" id="dateDay" th:field="*{dateDay}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="dateTime" class="form-label">Horário</label>
+            <input type="text" class="form-control" id="dateTime" th:field="*{dateTime}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="service" class="form-label">Serviço</label>
+            <select id="service" class="form-select" th:field="*{service}" required>
+                <option value="Corte de Cabelo">Corte de Cabelo</option>
+                <option value="Coloração">Coloração</option>
+                <option value="Tratamento de Pele">Tratamento de Pele</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <input type="password" class="form-control" id="senha" name="senha" required>
+        </div>
+
+        <div th:if="${param.error == 'senhaIncorreta'}" class="alert alert-danger" role="alert">
+            Senha incorreta! Tente novamente.
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar Agendamento</button>
+        <a href="/" class="btn btn-secondary">Cancelar</a>
+    </form>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

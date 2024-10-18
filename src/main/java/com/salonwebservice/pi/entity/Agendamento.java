@@ -12,12 +12,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class User {
+public class Agendamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int iduser;
-    private String name;
-    private String cpf;
+    private int idScheduling;
+    private String userName;
+    private String tel;
+    private String email;
+    private String dateDay;
+    private String dateTime;
+    private String service;
+    private String password;
 
 }
