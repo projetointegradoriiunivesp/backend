@@ -30,6 +30,11 @@ public class AgendamentoService {
         return agendamentoRepository.findById(id);
     }
 
+    public Agendamento findAgendamentoById(int id) {
+        return agendamentoRepository.findById(id)
+                .orElse(null); // Retorna null se o agendamento não for encontrado
+    }
+
     // Atualizar um agendamento existente
     public Agendamento updateAgendamento(int id, Agendamento updatedAgendamento) {
 

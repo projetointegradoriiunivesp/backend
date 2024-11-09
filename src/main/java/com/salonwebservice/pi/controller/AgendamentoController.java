@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -46,12 +47,21 @@ public class AgendamentoController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAgendamento(@PathVariable int id) {
-        try {
-            agendamentoService.deleteAgendamento(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (RuntimeException e) {
+    public ResponseEntity<Void> deleteAgendamento(@PathVariable int id, @RequestBody Map<String, String> requestBody) {
+        String password = requestBody.get("password");
+
+        Agendamento agendamento = agendamentoService.findAgendamentoById(id);
+        if (agendamento == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+        // Verifica se a senha fornecida corresponde à senha do agendamento
+        if (!agendamento.getPassword().equals(password)) {
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);  // Retorna 403 se a senha estiver incorreta
+        }
+
+        agendamentoService.deleteAgendamento(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }
