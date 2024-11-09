@@ -83,7 +83,13 @@
                         <td th:text="${agendamento.service}"></td>
                         <td>
                             <a th:href="@{/edit/{id}(id=${agendamento.idScheduling})}" class="btn btn-warning btn-sm">Editar</a>
-                            <a th:href="@{/web/agendamentos/delete/{id}(id=${agendamento.idScheduling})}" class="btn btn-danger btn-sm">Excluir</a>
+<!--                            <a th:href="@{/web/agendamentos/delete/{id}(id=${agendamento.idScheduling})}" class="btn btn-danger btn-sm">Excluir</a>-->
+
+                            <form th:action="@{/agendamentos/{id}(id=${agendamento.idScheduling})}" method="post" >
+                                <input type="hidden" name="_method" value="delete"/>
+                                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                            </form>
+
                         </td>
                     </tr>
                     </tbody>
@@ -134,30 +140,30 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form>
+                <form action="/agendamentos/new" method="post">
                     <div class="mb-3">
                         <label for="userName" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" id="userName" placeholder="Seu nome" required>
+                        <input type="text" class="form-control" id="userName" name="userName" placeholder="Seu nome" required>
                     </div>
                     <div class="mb-3">
                         <label for="tel" class="form-label">Telefone</label>
-                        <input type="tel" class="form-control" id="tel" placeholder="(99) 99999-9999" required>
+                        <input type="tel" class="form-control" id="tel" name="tel" placeholder="(99) 99999-9999" required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="seuemail@exemplo.com" required>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="seuemail@exemplo.com" required>
                     </div>
                     <div class="mb-3">
                         <label for="dateDay" class="form-label">Data</label>
-                        <input type="date" class="form-control" id="dateDay" required>
+                        <input type="date" class="form-control" id="dateDay" name="dateDay" required>
                     </div>
                     <div class="mb-3">
-                        <label for="time" class="form-label">Horário</label>
-                        <input type="time" class="form-control" id="time" required>
+                        <label for="dateTime" class="form-label">Horário</label>
+                        <input type="time" class="form-control" id="dateTime" name="dateTime" required>
                     </div>
                     <div class="mb-3">
                         <label for="service" class="form-label">Serviço</label>
-                        <select id="service" class="form-select" required>
+                        <select id="service" class="form-select" name="service" required>
                             <option value="Corte de Cabelo">Corte de Cabelo</option>
                             <option value="Coloração">Coloração</option>
                             <option value="Tratamento de Pele">Tratamento de Pele</option>
@@ -165,7 +171,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="password" placeholder="Crie uma senha" required>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Crie uma senha" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Agendar</button>
                 </form>

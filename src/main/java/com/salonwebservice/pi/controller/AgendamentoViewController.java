@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -55,30 +56,24 @@ public class AgendamentoViewController {
         }
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteAgendamento(@PathVariable int id, Model model) {
+        agendamentoService.deleteAgendamento(id);
+        return "redirect:/";
+    }
+
+    @PostMapping("/agendamentos/new")
+    public String createAgendamento(@ModelAttribute Agendamento agendamento, RedirectAttributes redirectAttributes) {
+        agendamentoService.saveAgendamento(agendamento);
+        redirectAttributes.addFlashAttribute("mensagem", "Agendamento criado com sucesso!");
+        return "redirect:/";
+    }
+
+    @GetMapping("/agendamento/form")
+    public String mostrarAgendamentoForm(Model model) {
+        model.addAttribute("agendamento", new Agendamento()); // Adiciona um novo objeto agendamento ao modelo
+        return "index"; // Carrega a página index.html
+    }
 
 
-//
-//    // Exibe o formulário para criar um novo agendamento
-//    @GetMapping("/new")
-//    public String showAgendamentoForm(Model model) {
-//        model.addAttribute("agendamento", new Agendamento());
-//        return "agendamento-form"; // Nome da view para o formulário de agendamento
-//    }
-//
-//    // Processa o formulário de criação de novo agendamento
-//    @PostMapping("/new")
-//    public String saveAgendamento(@ModelAttribute("agendamento") Agendamento agendamento) {
-//        agendamentoService.saveAgendamento(agendamento);
-//        return "redirect:/web/agendamentos"; // Redireciona após salvar o agendamento
-//    }
-//
-//
-//
-//
-//    // Exclui um agendamento
-//    @GetMapping("/delete/{id}")
-//    public String deleteAgendamento(@PathVariable int id) {
-//        agendamentoService.deleteAgendamento(id);
-//        return "redirect:/web/agendamentos";
-//    }
 }
