@@ -1,1 +1,1 @@
-# Web site de agendmaentos para o Salão de Beleza da Dona Inês
+# Web site de agendamentos para o Salão de Beleza da Dona Inês
