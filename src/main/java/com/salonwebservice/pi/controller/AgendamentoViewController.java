@@ -34,7 +34,7 @@ public class AgendamentoViewController {
             model.addAttribute("agendamento", agendamento.get());
             return "agendamento-form";
         } else {
-            return "index";
+            return "redirect:/";
         }
     }
 
@@ -65,7 +65,6 @@ public class AgendamentoViewController {
     @PostMapping("/agendamentos/new")
     public String createAgendamento(@ModelAttribute Agendamento agendamento, RedirectAttributes redirectAttributes) {
         agendamentoService.saveAgendamento(agendamento);
-        redirectAttributes.addFlashAttribute("mensagem", "Agendamento criado com sucesso!");
         return "redirect:/";
     }
 
