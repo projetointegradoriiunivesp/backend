@@ -29,11 +29,14 @@ public class AgendamentoViewController {
     //Renderiza página pra editar um agendamento
     @GetMapping("/edit/{id}")
     public String editAgendamentoForm(@PathVariable int id, Model model) {
+        System.out.println("Recebendo ID para edição: " + id);
         Optional<Agendamento> agendamento = agendamentoService.getAgendamentoById(id);
         if (agendamento.isPresent()) {
+            System.out.println("Agendamento encontrado: " + agendamento.get());
             model.addAttribute("agendamento", agendamento.get());
             return "agendamento-form";
         } else {
+            System.out.println("Agendamento não encontrado para o ID: " + id);
             return "redirect:/";
         }
     }

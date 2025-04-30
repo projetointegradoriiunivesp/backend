@@ -1,100 +1,74 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Salão de Beleza Dona Inês</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
 </head>
 <body>
+
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom shadow-sm" data-aos="fade-down">
     <div class="container">
-        <a class="navbar-brand" href="#">Salão Dona Inês</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="#"><i class="fas fa-spa me-2"></i>Salão Dona Inês</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Início</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#services">Serviços</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#schedule">Agendamento</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#testimonials">Depoimentos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contato</a>
-                </li>
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="#">Início</a></li>
+                <li class="nav-item"><a class="nav-link" href="#services">Serviços</a></li>
+                <li class="nav-item"><a class="nav-link" href="#testimonials">Depoimentos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contato</a></li>
+                <li class="nav-item"><a class="btn btn-agendar" href="#schedule"><i class="fas fa-calendar-check me-1"></i>Agendar</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<!-- Hero Section -->
-<section class="hero text-white text-center py-5" style="background: url('https://iili.io/2I6iNTX.md.jpg') center/cover no-repeat; height: 750px; display: flex; justify-content: center; align-items: center;">
-    <div class="container" style="background-color: rgba(0, 0, 0, 0.5); padding: 2rem; border-radius: 10px; text-align: center;">
+<!-- Hero -->
+<section class="hero hero-section text-white text-center py-5">
+    <div class="container hero-overlay" data-aos="zoom-in">
         <h1>Bem-vinda ao Salão de Beleza Dona Inês</h1>
         <p class="lead">Cuidados especiais para você se sentir ainda mais linda!</p>
-        <a href="#schedule" class="btn btn-light btn-lg">Agende seu horário</a>
+        <a href="#schedule" class="btn btn-primary btn-lg">Agende seu horário</a>
     </div>
 </section>
 
-
-
-
-
-<!-- Lista de Agendamentos Section -->
-<section id="agendamentos" class="py-5 bg-light">
+<!-- Agendamentos -->
+<section id="agendamentos" class="py-5 bg-light" data-aos="fade-up">
     <div class="container">
-        <div class="row text-center mb-4">
-            <div class="col">
-                <h2 class="display-6">Agendamentos</h2>
-                <p class="text-muted">Confira os agendamentos atuais.</p>
-            </div>
+        <div class="text-center mb-4">
+            <h2 class="display-6">Agendamentos</h2>
+            <p class="text-muted">Confira os agendamentos atuais.</p>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <table class="table table-striped table-bordered">
-                    <thead class="table-primary">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Telefone</th>
-                        <th>Email</th>
-                        <th>Data</th>
-                        <th>Horário</th>
-                        <th>Serviço</th>
-                        <th>Ações</th>
+                        <th>ID</th><th>Nome</th><th>Telefone</th><th>Email</th><th>Data</th><th>Horário</th><th>Serviço</th><th>Ações</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- Thymeleaf loop para mostrar os agendamentos -->
                     <tr th:each="agendamento : ${agendamentos}">
                         <td th:text="${agendamento.idScheduling}"></td>
                         <td th:text="${agendamento.userName}"></td>
                         <td th:text="${agendamento.tel}"></td>
                         <td th:text="${agendamento.email}"></td>
                         <td th:text="${agendamento.dateDay}"></td>
-                        <td th:text="${agendamento.dateTime}"></td> <!-- Mostrando apenas o horário -->
+                        <td th:text="${agendamento.dateTime}"></td>
                         <td th:text="${agendamento.service}"></td>
                         <td>
                             <a th:href="@{/edit/{id}(id=${agendamento.idScheduling})}" class="btn btn-warning btn-sm">Editar</a>
-<!--                            <a th:href="@{/web/agendamentos/delete/{id}(id=${agendamento.idScheduling})}" class="btn btn-danger btn-sm">Excluir</a>-->
                             <button class="btn btn-danger btn-sm delete-button" th:data-id="${agendamento.idScheduling}">Excluir</button>
-
-                        <!--                            <form th:action="@{/agendamentos/{id}(id=${agendamento.idScheduling})}" method="post" >-->
-<!--                                <input type="hidden" name="_method" value="delete"/>-->
-<!--                                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>-->
-<!--                            </form>-->
-
                         </td>
                     </tr>
                     </tbody>
@@ -104,145 +78,106 @@
     </div>
 </section>
 
-
-<!-- Serviços Section -->
+<!-- Serviços -->
 <section id="services" class="py-5">
     <div class="container">
-        <div class="row text-center mb-4">
-            <div class="col">
-                <h2 class="display-6">Nossos Serviços</h2>
-                <p class="text-muted">Escolha entre uma variedade de tratamentos personalizados.</p>
-            </div>
+        <div class="text-center mb-4" data-aos="fade-up">
+            <h2 class="display-6">Nossos Serviços</h2>
+            <p class="text-muted">Escolha entre uma variedade de tratamentos personalizados.</p>
         </div>
-        <div class="row text-center">
-            <div class="col-md-4">
-                <i class="fas fa-cut fa-3x mb-3 text-primary"></i>
-                <h4>Corte de Cabelo</h4>
-                <p>Estilos modernos e clássicos para qualquer ocasião.</p>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-right">
+                <div class="card h-100 text-center p-4">
+                    <i class="fas fa-cut fa-3x text-primary mb-3"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Corte de Cabelo</h5>
+                        <p class="card-text">Estilos modernos e clássicos para qualquer ocasião. Deixe seu visual em boas mãos com nossas especialistas.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <i class="fas fa-paint-brush fa-3x mb-3 text-primary"></i>
-                <h4>Coloração</h4>
-                <p>Transforme seu visual com cores vibrantes e duradouras.</p>
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="card h-100 text-center p-4">
+                    <i class="fas fa-paint-brush fa-3x text-primary mb-3"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Coloração</h5>
+                        <p class="card-text">Transforme seu visual com cores vibrantes e duradouras. Trabalhamos com as melhores marcas do mercado.</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <i class="fas fa-spa fa-3x mb-3 text-primary"></i>
-                <h4>Tratamentos de Pele</h4>
-                <p>Cuide da sua pele com tratamentos faciais personalizados.</p>
+            <div class="col-md-4" data-aos="fade-left">
+                <div class="card h-100 text-center p-4">
+                    <i class="fas fa-spa fa-3x text-primary mb-3"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Tratamentos de Pele</h5>
+                        <p class="card-text">Cuide da sua pele com tratamentos faciais personalizados. Resultados visíveis desde a primeira sessão.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Agendamento Section -->
-<section id="schedule" class="bg-light py-5">
+
+<!-- Agendar -->
+<section id="schedule" class="bg-light py-5" data-aos="zoom-in-up">
     <div class="container">
-        <div class="row text-center mb-4">
-            <div class="col">
-                <h2 class="display-6">Agende Seu Horário</h2>
-                <p class="text-muted">Preencha o formulário e garanta o seu atendimento.</p>
-            </div>
+        <div class="text-center mb-4">
+            <h2 class="display-6">Agende Seu Horário</h2>
+            <p class="text-muted">Preencha o formulário e garanta o seu atendimento.</p>
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <form action="/agendamentos/new" method="post">
-                    <div class="mb-3">
-                        <label for="userName" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" id="userName" name="userName" placeholder="Seu nome" required>
+                    <div class="row">
+                        <div class="col-md-6 mb-3"><label class="form-label">Nome</label><input type="text" class="form-control" name="userName" required></div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Telefone</label><input type="tel" class="form-control" name="tel" required></div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Email</label><input type="email" class="form-control" name="email" required></div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Data</label><input type="date" class="form-control" name="dateDay" required></div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Horário</label><input type="time" class="form-control" name="dateTime" required></div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Serviço</label>
+                            <select class="form-select" name="service" required>
+                                <option value="Corte de Cabelo">Corte de Cabelo</option>
+                                <option value="Coloração">Coloração</option>
+                                <option value="Tratamento de Pele">Tratamento de Pele</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3"><label class="form-label">Senha</label><input type="password" class="form-control" name="password" required></div>
                     </div>
-                    <div class="mb-3">
-                        <label for="tel" class="form-label">Telefone</label>
-                        <input type="tel" class="form-control" id="tel" name="tel" placeholder="(99) 99999-9999" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="seuemail@exemplo.com" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="dateDay" class="form-label">Data</label>
-                        <input type="date" class="form-control" id="dateDay" name="dateDay" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="dateTime" class="form-label">Horário</label>
-                        <input type="time" class="form-control" id="dateTime" name="dateTime" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="service" class="form-label">Serviço</label>
-                        <select id="service" class="form-select" name="service" required>
-                            <option value="Corte de Cabelo">Corte de Cabelo</option>
-                            <option value="Coloração">Coloração</option>
-                            <option value="Tratamento de Pele">Tratamento de Pele</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Crie uma senha" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Agendar</button>
+                    <div class="text-center"><button type="submit" class="btn btn-primary px-5">Agendar</button></div>
                 </form>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Depoimentos Section -->
-<section id="testimonials" class="py-5">
+<!-- Depoimentos -->
+<section id="testimonials" class="py-5" data-aos="fade-up">
     <div class="container">
-        <div class="row text-center mb-4">
-            <div class="col">
-                <h2 class="display-6">Depoimentos</h2>
-                <p class="text-muted">Veja o que nossos clientes têm a dizer.</p>
-            </div>
+        <div class="text-center mb-4">
+            <h2 class="display-6">Depoimentos</h2>
+            <p class="text-muted">Veja o que nossos clientes têm a dizer.</p>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text">"Simplesmente adorei o atendimento! Minha pele está maravilhosa!"</p>
-                        <p class="text-end">- Maria Clara</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text">"O melhor corte de cabelo que já fiz. Recomendo muito!"</p>
-                        <p class="text-end">- Juliana Lima</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text">"As cores do meu cabelo estão incríveis. Amei o resultado!"</p>
-                        <p class="text-end">- Fernanda Souza</p>
-                    </div>
-                </div>
-            </div>
+            <div class="col-md-4" data-aos="flip-left"><div class="card"><div class="card-body"><p class="card-text">"Adorei o atendimento!"</p><p class="text-end">- Maria Clara</p></div></div></div>
+            <div class="col-md-4" data-aos="flip-up"><div class="card"><div class="card-body"><p class="card-text">"Melhor corte de cabelo que já fiz."</p><p class="text-end">- Juliana Lima</p></div></div></div>
+            <div class="col-md-4" data-aos="flip-right"><div class="card"><div class="card-body"><p class="card-text">"As cores ficaram incríveis."</p><p class="text-end">- Fernanda Souza</p></div></div></div>
+
         </div>
     </div>
 </section>
 
-<!-- Contato Section -->
-<section id="contact" class="bg-dark text-white py-5">
+<!-- Contato -->
+<section id="contact" class="bg-dark text-white py-5" data-aos="fade-up">
     <div class="container">
-        <div class="row text-center mb-4">
-            <div class="col">
-                <h2 class="display-6">Entre em Contato</h2>
-                <p class="text-muted">Estamos aqui para ajudar você!</p>
-            </div>
+        <div class="text-center mb-4">
+            <h2 class="display-6">Entre em Contato</h2>
+            <p class="text-muted">Estamos aqui para ajudar você!</p>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <form>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="" placeholder="Seu email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="message" class="form-label">Mensagem</label>
-                        <textarea class="form-control" id="message" rows="4" placeholder="Sua mensagem"></textarea>
-                    </div>
+                <form action="#" method="post">
+                <div class="mb-3"><label class="form-label">Email</label><input type="email" class="form-control" placeholder="Seu email"></div>
+                    <div class="mb-3"><label class="form-label">Mensagem</label><textarea class="form-control" rows="4" placeholder="Sua mensagem"></textarea></div>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
             </div>
@@ -252,50 +187,12 @@
 
 <!-- Footer -->
 <footer class="bg-light py-4 text-center">
-    <p>&copy; 2024 Salão Dona Inês. Todos os direitos reservados.</p>
+    <p>&copy; 2025 Salão Dona Inês. Todos os direitos reservados.</p>
 </footer>
 
-<!-- Bootstrap JS -->
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const deleteButtons = document.querySelectorAll('.delete-button');
-
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function () {
-                const id = this.getAttribute('data-id');
-
-                // Solicita a senha do usuário
-                const password = prompt("Digite a senha para confirmar a exclusão:");
-
-                if (password !== null) {  // Se a senha não for nula (cancelada)
-                    fetch(`/agendamentos/${id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ password: password }),  // Envia a senha no corpo da requisição
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            this.closest('tr').remove();  // Remove a linha da tabela
-                        } else if (response.status === 403) {
-                            alert("Senha incorreta. Não foi possível excluir o agendamento.");
-                        } else {
-                            alert("Erro ao excluir o agendamento.");
-                        }
-                    })
-                    .catch(error => {
-                        console.error("Erro:", error);
-                        alert("Erro ao excluir o agendamento.");
-                    });
-                }
-            });
-        });
-    });
-</script>
-
-
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
