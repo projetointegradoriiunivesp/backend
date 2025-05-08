@@ -24,5 +24,4 @@ public class Agendamento {
     private String dateTime;
     private String service;
     private String password;
-
 }
