@@ -20,6 +20,8 @@ Desenvolver uma solução digital que modernize e otimize o processo de agendame
 
 ## 🛠️ Tecnologias Utilizadas
 
+Hospedado na Digital Ocean: http://67.205.131.238:8080/
+
 ### Backend
 - **Java 17**
 - **Spring Boot 3.2.7**
@@ -73,6 +75,12 @@ Desenvolver uma solução digital que modernize e otimize o processo de agendame
 ## 👥 Equipe
 
 - Cleyton Ongaratto
+- Gabriel Martins Melo
+- Altieres Moreira Servulo
+- Naomi
+- Luis Gabrie
+- Jhonatan
+- Aline
 
 ## 🎓 Instituição
 
